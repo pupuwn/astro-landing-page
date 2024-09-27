@@ -7,6 +7,8 @@ import Dash from '../../../public/assets/dashboard.svg';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { BorderBeam } from '@/components/ui/border-beam';
+import SectionBadge from '@/components/ui/section-badge';
+import { perks } from '@/constants';
 
 const HomePage = () => {
   return (
@@ -48,23 +50,45 @@ const HomePage = () => {
             <div className="relative flex items-center justify-center mx-auto py-10 md:py-20 w-full">
               <div className="absolute top-1/2 left-1/2 -z-10 gradient w-3/4 -translate-x-1/2 -translate-y-1/2  h-3/4 inset-0 blur-[10rem]"></div>
               <div className="-m-2 md:-m-4 rounded-xl p-2 ring-1 ring-inset ring-foreground/20 lg:rounded-2xl bg-opacity-50 backdrop-blur-lg">
-                <Image 
-                  src={Dash} 
-                  alt={'Dashboard'} 
-                  width={1200} 
-                  height={1200} 
-                  className="rounded-md lg:rounded-xl bg-foreground/10 shadow-2xl ring-1 ring-border" 
-                />
+                <Image src={Dash} alt={'Dashboard'} width={1200} height={1200} className="rounded-md lg:rounded-xl bg-foreground/10 shadow-2xl ring-1 ring-border" />
 
-                <BorderBeam 
-                  size={250}
-                  duration={12}
-                  delay={9}
-                />
+                <BorderBeam size={250} duration={12} delay={9} />
               </div>
             </div>
           </div>
         </Container>
+      </Wrapper>
+
+      {/* How it works */}
+      <Wrapper className="flex flex-col items-center justify-center py-12 relative">
+        <Container>
+          <div className="max-w-md mx-auto text-start md:text-center">
+            <SectionBadge title={'The Process'} />
+            <h2 className="text-3xl lg:text-4xl font-semibold mt-6">Three steps to build your dream website</h2>
+            <p className="text-muted-foreground mt-6">Turn your vision into reality in just 3 simple steps</p>
+          </div>
+        </Container>
+        <Container>
+          <div className="flex flex-col items-center justify-center py-10 md:py-20 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full divide-x-0 md:divide-x divide-y md:divide-y-0 divide-gray-900 lg:first:border-none first:border-gray-900">
+              {perks.map((perk) => (
+                <div key={perk.title} className="flex flex-col items-start px-4 py-6 md:px-6 lg:px-8 lg:py-6 ">
+                  <div className="flex items-center justify-center">
+                    <perk.icon className='w-8 h-8' />
+                  </div>
+                  <h3 className='text-lg font-medium mt-4'>
+                    {perk.title}
+                  </h3>
+                  <p className='text-muted-foreground mt-2 text-start'>
+                    {perk.info}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+
+        {/* Features */}
       </Wrapper>
     </section>
   );
